@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - ask_info_question
+  - image_caption
 
 responses:
   utter_greet:
@@ -32,6 +33,13 @@ responses:
 
 actions:
   - action_answer_info_question
+
+forms:
+  image_form:
+    required_slots:
+      image:
+        - type: from_text
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

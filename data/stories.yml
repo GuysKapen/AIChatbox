@@ -2,34 +2,48 @@ version: "2.0"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
 
-- story: ask info question
-  steps:
-    - intent: ask_info_question
-    - action: action_answer_info_question
+  - story: ask info question
+    steps:
+      - intent: ask_info_question
+      - action: action_answer_info_question
+
+  - story: image caption
+    steps:
+      - intent: image_caption
+      - action: image_form
+      - active_loop: image_form
+      - slot_was_set:
+          - requested_slot: image
+      - slot_was_set:
+          - image: http://localhost:5137/uploads/media/images/image.png
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: image_caption

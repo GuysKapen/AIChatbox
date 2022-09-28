@@ -99,3 +99,19 @@ nlu:
     - What language is spoken in Japan?
     - Why did Tesla go to Karlovac?
     - How many countries in EU?
+
+
+- intent: image_caption
+  examples: |
+    - Please caption this image
+    - Please label the image
+    - Please annotate this image
+    - Please legend this picture
+    - Please caption the picture
+    - Please title this image
+    - What this picture talks about
+    - What's in that picture
+    - What that image talks about
+    - What this picture speaks of
+    - What does that picture talk about
+    - What does that picture mean

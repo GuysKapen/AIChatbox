@@ -2,7 +2,11 @@
 
 ## Answer questioning
 
+## Translation
+
 ## Text summarize
+
+## Text generation
 
 ## Image styling
 
