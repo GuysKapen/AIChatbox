@@ -9,13 +9,21 @@
 
 # from typing import Any, Text, Dict, List
 #
+import json
+
+import requests
 import spacy
 from typing import List, Dict, Text, Any
 
 from rasa_sdk import Action, Tracker
 from .components import QueryProcessor, DocumentRetrieval, PassageRetrieval, AnswerExtractor
 
-# from rasa_sdk.executor import CollectingDispatcher
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+IMAGE_GENERATE_API_URL = os.environ['IMAGE_GENERATE_API_URL']
 
 
 class ActionAnswerInfoQuestion(Action):
@@ -44,5 +52,17 @@ class ActionAnswerInfoQuestion(Action):
         if len(answers) == 0:
             dispatcher.utter_message("Not found")
         dispatcher.utter_message(
-                    text=answers[0].get('answer'))
+            text=answers[0].get('answer'))
+        return []
+
+
+class ActionImageGenerate(Action):
+
+    def name(self) -> Text:
+        return "action_image_generate"
+
+    async def run(self, dispatcher, tracker: Tracker, domain):
+        result = requests.post(IMAGE_GENERATE_API_URL,
+                               json={"prompt": tracker.get_slot("prompt")})
+        dispatcher.utter_message(response="utter_generate_image", json_message=json.loads(result.content))
         return []

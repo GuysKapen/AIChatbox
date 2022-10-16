@@ -46,4 +46,49 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      - action: image_caption
+      - action: action_image_caption
+
+  - story: image generate
+    steps:
+      - intent: image_generate
+      - action: image_generate_form
+      - active_loop: image_generate_form
+      - slot_was_set:
+          - requested_slot: prompt
+      - intent: prompt
+      - slot_was_set:
+          - prompt: "chalk pastel drawing of a dog wearing a funny hat"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_image_generate
+
+  - story: interactive_story_1
+    steps:
+      - intent: image_generate
+      - action: image_generate_form
+      - active_loop: image_generate_form
+      - slot_was_set:
+          - requested_slot: prompt
+      - slot_was_set:
+          - prompt: chalk pastel drawing of a dog wearing a funny hat
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_image_generate
+
+- story: interactive_story_1
+  steps:
+  - intent: image_generate
+  - action: image_generate_form
+  - active_loop: image_generate_form
+  - slot_was_set:
+    - requested_slot: prompt
+  - slot_was_set:
+    - prompt: chalk pastel drawing of a dog wearing a funny hat
+  - slot_was_set:
+    - prompt: chalk pastel drawing of a dog wearing a funny hat
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_image_generate

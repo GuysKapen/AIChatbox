@@ -23,4 +23,18 @@ rules:
   - slot_was_set:
     - requested_slot: null
   # The actions we want to run when the form is submitted.
-  - action: image_caption
+  - action: action_image_caption
+
+
+- rule: Submit image generate form
+  condition:
+  # Condition that form is active.
+  - active_loop: image_generate_form
+  steps:
+  # Form is deactivated
+  - action: image_generate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: action_image_generate

@@ -1,45 +1,54 @@
-version: "2.0"
-
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - ask_info_question
-  - image_caption
-
+- prompt
+- image_generate
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- ask_info_question
+- image_caption
+entities:
+- prompt
+slots:
+  prompt:
+    type: text
+    influence_conversation: false
+  image:
+    type: text
+    influence_conversation: false
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
+  - text: Hey! How are you?
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
   utter_did_that_help:
-  - text: "Did that help you?"
-
+  - text: Did that help you?
   utter_happy:
-  - text: "Great, carry on!"
-
+  - text: Great, carry on!
   utter_goodbye:
-  - text: "Bye"
-
+  - text: Bye
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+  - text: I am a bot, powered by Rasa.
+  utter_ask_prompt:
+  - text: 'Please give some description for generate image:'
 actions:
-  - action_answer_info_question
-
+- action_answer_info_question
+- action_image_caption
+- action_image_generate
 forms:
   image_form:
     required_slots:
       image:
-        - type: from_text
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+      - type: from_text
+  image_generate_form:
+    required_slots:
+      prompt:
+      - type: from_text
